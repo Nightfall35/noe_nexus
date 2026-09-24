@@ -1,0 +1,6 @@
+Node 0
+Has token: false
+Waiting for CS: false
+Token state: DELIVERED -> localhost:8007
+Status: Idle, does not hold the token.
+Next peer in ring: localhost:8007

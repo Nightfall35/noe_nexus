@@ -1,0 +1,6 @@
+Node 9
+Has token: true
+Waiting for CS: false
+Token state: RECEIVED
+Status: Holding the token. Nothing to do, will forward.
+Next peer in ring: localhost:8000

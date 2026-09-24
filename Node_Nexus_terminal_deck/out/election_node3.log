@@ -1,0 +1,4 @@
+[15:00:23] Node 3 booted. Assumed initial leader: node 9
+[15:00:24] Starting election.
+[15:00:25] Received ELECTION from node 3 — replied OK, contesting.
+[15:00:26] Received ELECTION from node 8 — replied OK, contesting.

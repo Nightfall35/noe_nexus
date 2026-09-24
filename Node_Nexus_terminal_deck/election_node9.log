@@ -1,0 +1,4 @@
+[15:42:48] Node 9 booted. Assumed initial leader: node 9
+[15:42:52] Node 9 booted. Assumed initial leader: node 9
+[15:42:52] Starting election.
+[15:42:53] WON the election. Broadcasting COORDINATOR to all peers.

@@ -1,0 +1,5 @@
+Node 8
+Has token: false
+Waiting for CS: true
+Status: Waiting for the token to arrive (score update queued).
+Next peer in ring: localhost:8009

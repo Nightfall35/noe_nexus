@@ -1,0 +1,64 @@
+[14:58:59] Node 8 booted. Assumed initial leader: node 9
+[14:58:59] Starting election.
+[14:59:03] WON the election. Broadcasting COORDINATOR to all peers.
+[14:59:04] New leader recognized: node 8
+[14:59:05] Received ELECTION from node 2 — replied OK, contesting.
+[14:59:06] Starting election.
+[14:59:07] New leader recognized: node 2
+[14:59:09] WON the election. Broadcasting COORDINATOR to all peers.
+[14:59:10] New leader recognized: node 8
+[14:59:14] Received ELECTION from node 2 — replied OK, contesting.
+[14:59:15] Starting election.
+[14:59:18] WON the election. Broadcasting COORDINATOR to all peers.
+[14:59:18] New leader recognized: node 8
+[14:59:20] Received ELECTION from node 2 — replied OK, contesting.
+[14:59:20] Starting election.
+[14:59:23] WON the election. Broadcasting COORDINATOR to all peers.
+[14:59:24] New leader recognized: node 8
+[14:59:29] Received ELECTION from node 2 — replied OK, contesting.
+[14:59:29] Starting election.
+[14:59:32] WON the election. Broadcasting COORDINATOR to all peers.
+[14:59:32] New leader recognized: node 8
+[14:59:34] Received ELECTION from node 2 — replied OK, contesting.
+[14:59:34] Starting election.
+[14:59:37] WON the election. Broadcasting COORDINATOR to all peers.
+[14:59:37] New leader recognized: node 8
+[14:59:39] Received ELECTION from node 2 — replied OK, contesting.
+[14:59:39] Starting election.
+[14:59:42] WON the election. Broadcasting COORDINATOR to all peers.
+[14:59:42] New leader recognized: node 8
+[14:59:44] Received ELECTION from node 2 — replied OK, contesting.
+[14:59:44] Starting election.
+[14:59:47] WON the election. Broadcasting COORDINATOR to all peers.
+[14:59:47] New leader recognized: node 8
+[14:59:49] Received ELECTION from node 2 — replied OK, contesting.
+[14:59:49] Starting election.
+[14:59:52] WON the election. Broadcasting COORDINATOR to all peers.
+[14:59:52] New leader recognized: node 8
+[14:59:54] Received ELECTION from node 2 — replied OK, contesting.
+[14:59:54] Starting election.
+[14:59:57] WON the election. Broadcasting COORDINATOR to all peers.
+[14:59:57] New leader recognized: node 8
+[14:59:59] Received ELECTION from node 2 — replied OK, contesting.
+[14:59:59] Starting election.
+[15:00:02] WON the election. Broadcasting COORDINATOR to all peers.
+[15:00:02] New leader recognized: node 8
+[15:00:04] Received ELECTION from node 2 — replied OK, contesting.
+[15:00:04] Starting election.
+[15:00:07] WON the election. Broadcasting COORDINATOR to all peers.
+[15:00:07] New leader recognized: node 8
+[15:00:09] Received ELECTION from node 2 — replied OK, contesting.
+[15:00:09] Starting election.
+[15:00:12] WON the election. Broadcasting COORDINATOR to all peers.
+[15:00:12] New leader recognized: node 8
+[15:00:14] Received ELECTION from node 2 — replied OK, contesting.
+[15:00:14] Starting election.
+[15:00:17] WON the election. Broadcasting COORDINATOR to all peers.
+[15:00:17] New leader recognized: node 8
+[15:00:19] Received ELECTION from node 2 — replied OK, contesting.
+[15:00:19] Starting election.
+[15:00:22] WON the election. Broadcasting COORDINATOR to all peers.
+[15:00:22] New leader recognized: node 8
+[15:00:24] Received ELECTION from node 2 — replied OK, contesting.
+[15:00:24] Starting election.
+[15:00:25] Received ELECTION from node 3 — replied OK, contesting.

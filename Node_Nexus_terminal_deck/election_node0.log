@@ -1,0 +1,4 @@
+[15:38:43] Node 0 booted. Assumed initial leader: node 9
+[15:38:43] Starting election.
+[15:38:46] WON the election. Broadcasting COORDINATOR to all peers.
+[15:42:53] New leader recognized: node 9
