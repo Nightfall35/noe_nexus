@@ -1,4 +1,4 @@
-[README (2).md](https://github.com/user-attachments/files/32631114/README.2.md)
+[README .md](https://github.com/user-attachments/files/32631114/README.2.md)
 # Node Nexus
 
 Node Nexus is a Java-based distributed-systems demonstration. It models a group of networked nodes that communicate over HTTP, exchange chat messages, elect a coordinator, maintain logical clocks, and circulate a token that protects shared scoreboard updates.
