@@ -36,6 +36,7 @@ public class Dashboard {
     private final MutualExclusion mutex;
     private final Election election;
     private final ChatHandler chatHandler;
+    private final long startTimeMillis = System.currentTimeMillis();
 
     public Dashboard(int nodeId, int port, Clock clock, MutualExclusion mutex,
                      Election election, ChatHandler chatHandler) {
@@ -79,8 +80,13 @@ public class Dashboard {
         out.append(sectionLabel("TOKEN RING  ")).append(tokenColor).append(tokenState).append(RESET).append('\n');
         out.append(tokenPath(tokenColor)).append('\n');
         out.append("  passes: ").append(mutex.getTokenPasses())
-           .append("   next hop: ").append(mutex.getNextPeerAddress())
+           .append("   next hop (active): ").append(mutex.getNextPeerAddress())
            .append("   last change: ").append(ageText(mutex.getLastTokenChangeMillis())).append('\n');
+        out.append("  configured next hop: ").append(mutex.getConfiguredNextPeerAddress())
+           .append("   hops ok/failed: ").append(GREEN).append(mutex.getTokenHopSuccessCount()).append(RESET)
+           .append("/").append(mutex.getTokenHopFailCount() > 0 ? RED : DIM).append(mutex.getTokenHopFailCount()).append(RESET)
+           .append("   skipped as dead: ").append(mutex.getDeadPeerIds().isEmpty() ? DIM + "none" + RESET : RED + mutex.getDeadPeerIds() + RESET)
+           .append('\n');
 
         out.append(divider('-')).append('\n');
         out.append(sectionLabel("NODE STATUS")).append('\n');
@@ -91,9 +97,13 @@ public class Dashboard {
         String electionText = election.isElectionInProgress() ? YELLOW + "RUNNING" + RESET : DIM + "IDLE" + RESET;
         out.append("  leader: ").append(leaderText)
            .append("   token: ").append(tokenText)
-           .append("   election: ").append(electionText).append('\n');
+           .append("   election: ").append(electionText)
+           .append("   epoch: ").append(election.getCurrentEpoch()).append('\n');
         out.append("  lamport: ").append(clock.getLamportTime())
            .append("   vector: ").append(vectorToString(clock.getVectorClock())).append('\n');
+        out.append("  uptime: ").append(uptimeText())
+           .append("   last health check: ").append(election.isLastHealthCheckOk() ? GREEN + "OK" + RESET : RED + "FAILED" + RESET)
+           .append(" (").append(ageText(election.getLastHealthCheckMillis())).append(')').append('\n');
 
         out.append(divider('-')).append('\n');
         out.append(sectionLabel("SCOREBOARD")).append('\n');
@@ -136,8 +146,15 @@ public class Dashboard {
     }
 
     private String ageText(long timestamp) {
+        if (timestamp <= 0) return "never";
         long seconds = Math.max(0, Duration.ofMillis(System.currentTimeMillis() - timestamp).toSeconds());
         return seconds == 0 ? "now" : seconds + "s ago";
+    }
+
+    private String uptimeText() {
+        long totalSeconds = Duration.ofMillis(System.currentTimeMillis() - startTimeMillis).toSeconds();
+        long h = totalSeconds / 3600, m = (totalSeconds % 3600) / 60, s = totalSeconds % 60;
+        return (h > 0 ? h + "h " : "") + (h > 0 || m > 0 ? m + "m " : "") + s + "s";
     }
 
     private String sectionLabel(String text) {

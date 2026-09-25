@@ -20,6 +20,7 @@ import models.Message;
 import sync.Election;
 import sync.MutualExclusion;
 import ui.TypeFX;
+import util.JsonUtil;
 
 public class ChatHandler implements HttpHandler {
 
@@ -32,6 +33,7 @@ public class ChatHandler implements HttpHandler {
     private final List<String> peerAddresses;
     private final String selfAddress;
     private final List<Message> messageLog = new ArrayList<>();
+    private final long startTimeMillis = System.currentTimeMillis();
 
     /** Original constructor kept for compatibility; GUI features (send/status) are disabled without the extra args. */
     public ChatHandler(int nodeId, Clock clock, MutualExclusion mutex, Election election) {
@@ -131,11 +133,21 @@ public class ChatHandler implements HttpHandler {
         sb.append("\"is_leader\":").append(isLeader).append(",");
         sb.append("\"has_token\":").append(mutex.hasToken()).append(",");
         sb.append("\"waiting_for_token\":").append(mutex.isWaitingForToken()).append(",");
-        sb.append("\"token_state\":\"").append(escapeJson(mutex.getTokenState())).append("\",");
-        sb.append("\"token_next_peer\":\"").append(escapeJson(mutex.getNextPeerAddress())).append("\",");
+        sb.append("\"token_state\":\"").append(JsonUtil.escape(mutex.getTokenState())).append("\",");
+        sb.append("\"token_next_peer\":\"").append(JsonUtil.escape(mutex.getNextPeerAddress())).append("\",");
         sb.append("\"token_passes\":").append(mutex.getTokenPasses()).append(",");
         sb.append("\"token_changed_at\":").append(mutex.getLastTokenChangeMillis()).append(",");
         sb.append("\"election_in_progress\":").append(election.isElectionInProgress()).append(",");
+        sb.append("\"election_epoch\":").append(election.getCurrentEpoch()).append(",");
+        sb.append("\"last_health_check_ms\":").append(election.getLastHealthCheckMillis()).append(",");
+        sb.append("\"last_health_check_ok\":").append(election.isLastHealthCheckOk()).append(",");
+        sb.append("\"uptime_ms\":").append(System.currentTimeMillis() - startTimeMillis).append(",");
+        sb.append("\"token_next_peer_configured\":\"").append(JsonUtil.escape(mutex.getConfiguredNextPeerAddress())).append("\",");
+        sb.append("\"token_hops_ok\":").append(mutex.getTokenHopSuccessCount()).append(",");
+        sb.append("\"token_hops_failed\":").append(mutex.getTokenHopFailCount()).append(",");
+        sb.append("\"dead_peers\":").append(mutex.getDeadPeerIds()).append(",");
+        sb.append("\"send_ok\":").append(networkClient == null ? 0 : networkClient.getSendSuccessCount()).append(",");
+        sb.append("\"send_failed\":").append(networkClient == null ? 0 : networkClient.getSendFailureCount()).append(",");
         sb.append("\"lamport\":").append(clock.getLamportTime()).append(",");
         sb.append("\"vector\":").append(Arrays.toString(clock.getVectorClock())).append(",");
         sb.append("\"scores\":{");
@@ -183,10 +195,11 @@ public class ChatHandler implements HttpHandler {
         String body = readBody(exchange);
         String type = extractString(body, "type", "");
         int senderId = extractInt(body, "sender_id", -1);
+        int epoch = extractInt(body, "epoch", 0);
 
         switch (type) {
-            case "ELECTION" -> election.handleElectionMessage(senderId);
-            case "COORDINATOR" -> election.handleCoordinatorMessage(senderId);
+            case "ELECTION" -> election.handleElectionMessage(senderId, epoch);
+            case "COORDINATOR" -> election.handleCoordinatorMessage(senderId, epoch);
             case "OK" -> { /* no-op: our HTTP 200 response IS the OK — see Election.java */ }
             default -> System.err.println("Node " + nodeId + ": unknown election message type '" + type + "'");
         }
@@ -207,7 +220,7 @@ public class ChatHandler implements HttpHandler {
                 if (i > 0) sb.append(",");
                 Message m = messageLog.get(i);
                 sb.append("{\"sender_id\":").append(m.getSenderId())
-                  .append(",\"text\":\"").append(escapeJson(m.getText())).append("\"")
+                  .append(",\"text\":\"").append(JsonUtil.escape(m.getText())).append("\"")
                   .append(",\"lamport\":").append(m.getLamportTime())
                   .append(",\"vector\":").append(Arrays.toString(m.getVectorClock()))
                   .append("}");
@@ -227,8 +240,13 @@ public class ChatHandler implements HttpHandler {
     }
 
     private String extractString(String json, String key, String defaultValue) {
-        Matcher m = Pattern.compile("\"" + key + "\"\\s*:\\s*\"([^\"]*)\"").matcher(json);
-        return m.find() ? m.group(1) : defaultValue;
+        // (?:\\.|[^"\\])* — a run of "anything that isn't a quote or backslash,
+        // or a backslash followed by any one character" — so an escaped quote
+        // (\") inside the value no longer prematurely ends the match, and the
+        // captured group still holds the raw (escaped) JSON text, which we
+        // unescape below.
+        Matcher m = Pattern.compile("\"" + key + "\"\\s*:\\s*\"((?:\\\\.|[^\"\\\\])*)\"").matcher(json);
+        return m.find() ? JsonUtil.unescape(m.group(1)) : defaultValue;
     }
 
     private int[] extractIntArray(String json, String key) {
@@ -255,10 +273,6 @@ public class ChatHandler implements HttpHandler {
             result.put(Integer.parseInt(entry.group(1)), Integer.parseInt(entry.group(2)));
         }
         return result;
-    }
-
-    private String escapeJson(String s) {
-        return s.replace("\\", "\\\\").replace("\"", "\\\"");
     }
 
     private void sendResponse(HttpExchange exchange, int statusCode, String response) throws IOException {

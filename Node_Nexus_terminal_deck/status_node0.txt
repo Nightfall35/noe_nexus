@@ -1,19 +1,19 @@
 ==============================================================================
 [1m[36m  NODE NEXUS :: LIVE NODE CONSOLE[0m
-  node 0  |  port 8000  |  [32mONLINE[0m  |  15:46:47
+  node 0  |  port 8000  |  [32mONLINE[0m  |  03:53:35
 ==============================================================================
-[33m[1mTOKEN RING  [0m[36mRECEIVED[0m
-  [32mnode0 [●][0m  [36m●------->----[0m  [36mnode7 [○][0m  [2m(ring continues)[0m
-  passes: 19202   next hop: localhost:8007   last change: now
+[33m[1mTOKEN RING  [0m[32mHOLDING[0m
+  [32mnode0 [●][0m  [32m·------->----[0m  [36mnode1 [○][0m  [2m(ring continues)[0m
+  passes: 0   next hop: localhost:8001   last change: 10s ago
 ------------------------------------------------------------------------------
 [33m[1mNODE STATUS[0m
-  leader: NODE 9   token: [32mHELD[0m   election: [2mIDLE[0m
-  lamport: 1   vector: [1,0,0,0,0,0,0,0,0,0]
+  leader: [32mNODE 0 (LEADER)[0m   token: [32mHELD[0m   election: [2mIDLE[0m
+  lamport: 0   vector: [0,0,0,0,0,0,0,0,0,0]
 ------------------------------------------------------------------------------
 [33m[1mSCOREBOARD[0m
-  [34mnode0[0m: 1
+  [2m(no score updates yet)[0m
 ------------------------------------------------------------------------------
 [33m[1mCHAT STREAM  /  LAST 8[0m
-  [2m[L1][0m [36mnode0[0m: Hi
+  [2m(no messages yet)[0m
 ------------------------------------------------------------------------------
-[2m  refreshed 15:46:47  |  token animation updates every second[0m
+[2m  refreshed 03:53:35  |  token animation updates every second[0m

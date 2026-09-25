@@ -26,6 +26,11 @@ public class EventLog {
         overwrite(Path.of("token_node" + nodeId + ".log"), content);
     }
 
+    /** Appends a timestamped line recording one token hop's outcome (success or failure) to tokenhops_node<id>.log. */
+    public static void appendTokenHop(int nodeId, String line) {
+        append(Path.of("tokenhops_node" + nodeId + ".log"), line);
+    }
+
     /** Overwrites scoreboard_node<id>.log with the current scoreboard snapshot. */
     public static void writeScoreboard(int nodeId, String content) {
         overwrite(Path.of("scoreboard_node" + nodeId + ".log"), content);

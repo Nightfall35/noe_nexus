@@ -7,6 +7,8 @@ import java.net.http.HttpResponse;
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicLong;
+import util.JsonUtil;
 
 
 public class NetworkClient 
@@ -19,6 +21,13 @@ public class NetworkClient
     private final HttpClient client = HttpClient.newBuilder()
             .connectTimeout(CONNECT_TIMEOUT)
             .build();
+
+    // Simple counters for the dashboard's diagnostics panel (#12): how many
+    // outbound POSTs (chat broadcasts, etc.) have succeeded vs failed since
+    // this node started.
+    private final AtomicLong sendSuccessCount = new AtomicLong();
+    private final AtomicLong sendFailureCount = new AtomicLong();
+
     public void broadcastChatMessage(int senderId, String text, int lamport, int[] vector,
                                       List<String> peerAddresses, String selfAddress) {
         String json = buildChatJson(senderId, text, lamport, vector);
@@ -36,18 +45,32 @@ public class NetworkClient
                 .build();
         client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
                 .thenAccept(response -> {
-                    if (DEBUG_NETWORK && response.statusCode() >= 400) {
-                        System.err.println("NetworkClient: POST to " + address + path
-                                + " returned HTTP " + response.statusCode());
+                    if (response.statusCode() >= 200 && response.statusCode() < 300) {
+                        sendSuccessCount.incrementAndGet();
+                    } else {
+                        sendFailureCount.incrementAndGet();
+                        if (DEBUG_NETWORK) {
+                            System.err.println("NetworkClient: POST to " + address + path
+                                    + " returned HTTP " + response.statusCode());
+                        }
                     }
                 })
                 .exceptionally(ex -> {
+                    sendFailureCount.incrementAndGet();
                     if (DEBUG_NETWORK) {
                         System.err.println("NetworkClient: failed POST to " + address + path
                                 + " -> " + rootMessage(ex));
                     }
                     return null;
                 });
+    }
+
+    public long getSendSuccessCount() {
+        return sendSuccessCount.get();
+    }
+
+    public long getSendFailureCount() {
+        return sendFailureCount.get();
     }
 
     private String rootMessage(Throwable error) {
@@ -59,7 +82,7 @@ public class NetworkClient
     }
 
     private String buildChatJson(int senderId, String text, int lamport, int[] vector) {
-        String escaped = text.replace("\\", "\\\\").replace("\"", "\\\"");
+        String escaped = JsonUtil.escape(text);
         return "{\"sender_id\":" + senderId
                 + ",\"text\":\"" + escaped + "\""
                 + ",\"lamport\":" + lamport

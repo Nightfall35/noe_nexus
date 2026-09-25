@@ -5,8 +5,25 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Node Nexus // Command Center</title>
 <style>
-:root{--bg:#080b14;--panel:#101624;--panel2:#151d2e;--line:#26324a;--text:#e9f2ff;--muted:#7f8da8;--cyan:#42d9ff;--green:#58e39b;--yellow:#f8c85d;--red:#ff6b7a;--purple:#bd7cff;--shadow:0 18px 55px rgba(0,0,0,.28);--ease:cubic-bezier(.23,1,.32,1)}
-*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:radial-gradient(circle at 80% -10%,#172446 0,#080b14 43%);color:var(--text);font:14px/1.45 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,textarea{font:inherit}button{cursor:pointer}.app{display:grid;grid-template-columns:290px minmax(0,1fr);min-height:100vh}.side{padding:25px 19px;border-right:1px solid var(--line);background:rgba(8,11,20,.8);backdrop-filter:blur(14px);position:sticky;top:0;height:100vh;overflow:auto}.brand{display:flex;align-items:center;gap:11px;margin-bottom:28px}.brandmark{width:36px;height:36px;border:1px solid var(--cyan);border-radius:12px;display:grid;place-items:center;color:var(--cyan);box-shadow:0 0 24px #42d9ff33}.brand h1{font-size:14px;letter-spacing:.18em;margin:0}.brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:.08em;margin-top:2px}.label{color:var(--muted);font-size:10px;letter-spacing:.14em;text-transform:uppercase;margin:19px 0 8px}.field{width:100%;background:#0d1320;border:1px solid var(--line);color:var(--text);border-radius:9px;padding:10px 11px;outline:none;transition:.18s}.field:focus{border-color:var(--cyan);box-shadow:0 0 0 3px #42d9ff18}.row{display:flex;gap:8px}.row .field{min-width:0}.btn{border:1px solid var(--line);border-radius:9px;padding:10px 12px;background:#172238;color:var(--text);transition:transform .16s var(--ease),background .16s,border-color .16s}.btn:hover{border-color:#496486;background:#1d2d49}.btn:active{transform:scale(.97)}.btn.primary{background:#10485a;border-color:#1a849c;color:#d9fbff}.btn.green{background:#124630;border-color:#257d57;color:#cffff0}.btn.full{width:100%}.hint{font-size:11px;color:var(--muted);margin:8px 0}.side-footer{margin-top:24px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:11px}.main{min-width:0;padding:25px clamp(18px,3vw,42px) 50px}.top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;margin-bottom:22px}.eyebrow{color:var(--cyan);font-size:11px;letter-spacing:.18em;text-transform:uppercase}.title{font-size:clamp(25px,3vw,41px);letter-spacing:-.04em;margin:5px 0 5px}.subtitle{color:var(--muted);margin:0}.live{display:flex;align-items:center;gap:9px;color:var(--green);font-size:12px}.dot{width:9px;height:9px;background:var(--green);border-radius:50%;box-shadow:0 0 13px var(--green)}.dot.off{background:var(--red);box-shadow:0 0 13px var(--red)}.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:14px}.metric,.panel{background:linear-gradient(145deg,#121b2b,#0d1422);border:1px solid var(--line);border-radius:15px;box-shadow:var(--shadow)}.metric{padding:16px}.metric .k{color:var(--muted);font-size:10px;letter-spacing:.12em;text-transform:uppercase}.metric .v{font-size:26px;font-weight:700;letter-spacing:-.05em;margin-top:5px}.metric .s{color:var(--muted);font-size:11px;margin-top:2px}.dashboard{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(330px,.8fr);gap:14px}.panel{padding:17px;min-width:0}.panel-head{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:14px}.panel-title{font-size:12px;letter-spacing:.13em;text-transform:uppercase}.panel-sub{font-size:11px;color:var(--muted)}.ring-wrap{min-height:420px;position:relative;display:grid;place-items:center;background:radial-gradient(circle,#18243b 0,#0b111e 62%);border-radius:11px;overflow:hidden}.ring-wrap:before,.ring-wrap:after{content:"";position:absolute;border:1px solid #2b4662;border-radius:50%;width:63%;aspect-ratio:1;opacity:.38}.ring-wrap:after{width:39%;border-color:#273c60}.ring{width:100%;height:420px}.ring-edge{stroke:#28405a;stroke-width:1.5;fill:none;stroke-dasharray:4 8}.ring-edge.active{stroke:var(--cyan);stroke-width:2.4;filter:drop-shadow(0 0 5px #42d9ff)}.ring-node{fill:#101a2b;stroke:#50627d;stroke-width:2;transition:.2s}.ring-node.online{stroke:var(--green)}.ring-node.token{fill:#173b36;stroke:var(--green);filter:drop-shadow(0 0 9px #58e39b)}.ring-node.offline{stroke:#472d3c;fill:#1a121c}.ring-label{fill:var(--text);font-size:11px;text-anchor:middle;font-weight:700}.ring-port{fill:var(--muted);font-size:8px;text-anchor:middle}.token-orb{fill:var(--yellow);filter:drop-shadow(0 0 8px #f8c85d);opacity:0}.token-orb.show{opacity:1}.ring-center{text-anchor:middle;fill:var(--muted);font-size:11px;letter-spacing:2px}.ring-legend{position:absolute;bottom:13px;left:16px;display:flex;gap:15px;color:var(--muted);font-size:10px}.legend i{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:5px}.node-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:10px}.node-card{background:#101a2a;border:1px solid var(--line);border-radius:12px;padding:13px;transition:transform .18s var(--ease),border-color .18s}.node-card:hover{transform:translateY(-2px);border-color:#456486}.node-card.offline{opacity:.58}.node-head{display:flex;justify-content:space-between;align-items:center}.node-name{font-weight:700}.pill{font-size:9px;padding:3px 7px;border-radius:20px;text-transform:uppercase;letter-spacing:.08em}.pill.online{background:#123d2d;color:var(--green)}.pill.offline{background:#3b1822;color:var(--red)}.node-stat{display:flex;justify-content:space-between;color:var(--muted);font-size:11px;margin-top:9px}.node-stat b{color:var(--text);font-weight:500}.token-line{margin-top:11px;min-height:25px;color:var(--yellow);font-size:11px}.token-line.moving{color:var(--purple)}.token-line.stalled{color:var(--red)}.bar{height:3px;background:#26344a;border-radius:3px;overflow:hidden;margin-top:10px}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--cyan),var(--purple));width:50%;animation:flow 1.1s linear infinite}@keyframes flow{to{transform:translateX(100%)}}.side-stack{display:grid;gap:14px}.chat{height:262px;overflow:auto;display:flex;flex-direction:column-reverse;gap:8px}.msg{border-left:2px solid var(--cyan);padding:6px 9px;background:#0c1421;border-radius:0 8px 8px 0}.msg .meta{color:var(--muted);font-size:10px}.msg p{margin:2px 0 0;word-break:break-word}.empty{color:var(--muted);padding:26px;text-align:center}.compose{display:flex;gap:8px;margin-top:11px}.compose input{flex:1}.score-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}.activity{height:190px;overflow:auto;font-size:11px}.activity div{padding:7px 0;border-bottom:1px solid #1c2739;color:var(--muted)}.activity b{color:var(--cyan);font-weight:500}.loading{position:fixed;inset:0;background:#070b14;z-index:20;display:grid;place-items:center;transition:opacity .4s}.loading.hide{opacity:0;pointer-events:none}.loader{text-align:center}.spinner{width:45px;height:45px;border:2px solid #22314b;border-top-color:var(--cyan);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 16px}@keyframes spin{to{transform:rotate(360deg)}}.toast{position:fixed;right:22px;bottom:22px;background:#14223a;border:1px solid #456486;border-radius:10px;padding:12px 15px;opacity:0;transform:translateY(10px);transition:.22s;z-index:30}.toast.show{opacity:1;transform:none}.skeleton{height:13px;border-radius:5px;background:linear-gradient(90deg,#172238,#223452,#172238);background-size:200% 100%;animation:shimmer 1.4s infinite}@keyframes shimmer{to{background-position:-200% 0}}@media(max-width:1050px){.app{grid-template-columns:235px 1fr}.dashboard{grid-template-columns:1fr}.ring-wrap{min-height:350px}.metrics{grid-template-columns:repeat(2,1fr)}}@media(max-width:700px){.app{display:block}.side{position:relative;height:auto;border-right:0;border-bottom:1px solid var(--line)}.main{padding:20px 13px}.top{display:block}.live{margin-top:13px}.metrics{gap:8px}.metric{padding:12px}.metric .v{font-size:21px}.ring{height:340px}.ring-wrap{min-height:340px}.score-row{grid-template-columns:1fr}}
+:root{--bg:#080b14;--panel:#101624;--panel2:#151d2e;--line:#26324a;--text:#e9f2ff;--muted:#7f8da8;--cyan:#42d9ff;--green:#58e39b;--yellow:#f8c85d;--red:#ff6b7a;--purple:#bd7cff;--orange:#ff9a4d;--shadow:0 18px 55px rgba(0,0,0,.28);--ease:cubic-bezier(.23,1,.32,1)}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:radial-gradient(circle at 80% -10%,#172446 0,#080b14 43%);color:var(--text);font:14px/1.45 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,textarea{font:inherit}button{cursor:pointer}.app{display:grid;grid-template-columns:320px minmax(0,1fr);min-height:100vh}.side{padding:25px 19px;border-right:1px solid var(--line);background:rgba(8,11,20,.8);backdrop-filter:blur(14px);position:sticky;top:0;height:100vh;overflow:auto}.brand{display:flex;align-items:center;gap:11px;margin-bottom:28px}.brandmark{width:36px;height:36px;border:1px solid var(--cyan);border-radius:12px;display:grid;place-items:center;color:var(--cyan);box-shadow:0 0 24px #42d9ff33}.brand h1{font-size:14px;letter-spacing:.18em;margin:0}.brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:.08em;margin-top:2px}.label{color:var(--muted);font-size:10px;letter-spacing:.14em;text-transform:uppercase;margin:19px 0 8px}.field{width:100%;background:#0d1320;border:1px solid var(--line);color:var(--text);border-radius:9px;padding:10px 11px;outline:none;transition:.18s}.field:focus{border-color:var(--cyan);box-shadow:0 0 0 3px #42d9ff18}.row{display:flex;gap:8px}.row .field{min-width:0}.btn{border:1px solid var(--line);border-radius:9px;padding:10px 12px;background:#172238;color:var(--text);transition:transform .16s var(--ease),background .16s,border-color .16s}.btn:hover{border-color:#496486;background:#1d2d49}.btn:active{transform:scale(.97)}.btn.primary{background:#10485a;border-color:#1a849c;color:#d9fbff}.btn.green{background:#124630;border-color:#257d57;color:#cffff0}.btn.full{width:100%}.hint{font-size:11px;color:var(--muted);margin:8px 0}.side-footer{margin-top:24px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:11px}.main{min-width:0;padding:25px clamp(18px,3vw,42px) 50px}.top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;margin-bottom:22px}.eyebrow{color:var(--cyan);font-size:11px;letter-spacing:.18em;text-transform:uppercase}.title{font-size:clamp(25px,3vw,41px);letter-spacing:-.04em;margin:5px 0 5px}.subtitle{color:var(--muted);margin:0}.live{display:flex;align-items:center;gap:9px;color:var(--green);font-size:12px}.dot{width:9px;height:9px;background:var(--green);border-radius:50%;box-shadow:0 0 13px var(--green)}.dot.off{background:var(--red);box-shadow:0 0 13px var(--red)}.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:14px}.metric,.panel{background:linear-gradient(145deg,#121b2b,#0d1422);border:1px solid var(--line);border-radius:15px;box-shadow:var(--shadow)}.metric{padding:16px}.metric .k{color:var(--muted);font-size:10px;letter-spacing:.12em;text-transform:uppercase}.metric .v{font-size:26px;font-weight:700;letter-spacing:-.05em;margin-top:5px}.metric .s{color:var(--muted);font-size:11px;margin-top:2px}.dashboard{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(330px,.8fr);gap:14px}.panel{padding:17px;min-width:0}.panel-head{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:14px}.panel-title{font-size:12px;letter-spacing:.13em;text-transform:uppercase}.panel-sub{font-size:11px;color:var(--muted)}.ring-wrap{min-height:420px;position:relative;display:grid;place-items:center;background:radial-gradient(circle,#18243b 0,#0b111e 62%);border-radius:11px;overflow:hidden}.ring-wrap:before,.ring-wrap:after{content:"";position:absolute;border:1px solid #2b4662;border-radius:50%;width:63%;aspect-ratio:1;opacity:.38}.ring-wrap:after{width:39%;border-color:#273c60}.ring{width:100%;height:420px}.ring-edge{stroke:#28405a;stroke-width:1.5;fill:none;stroke-dasharray:4 8}.ring-edge.active{stroke:var(--cyan);stroke-width:2.4;filter:drop-shadow(0 0 5px #42d9ff)}.active-route-line{stroke:var(--orange);stroke-width:2.2;stroke-dasharray:2 6;opacity:.85;filter:drop-shadow(0 0 4px #ff9a4d88)}.ring-node{fill:#101a2b;stroke:#50627d;stroke-width:2;transition:.2s}.ring-node.online{stroke:var(--green)}.ring-node.token{fill:#173b36;stroke:var(--green);filter:drop-shadow(0 0 9px #58e39b)}.ring-node.offline{stroke:#472d3c;fill:#1a121c}.ring-node.disabled{stroke:#3a4257;fill:#12151f;opacity:.5}.ring-label{fill:var(--text);font-size:11px;text-anchor:middle;font-weight:700}.ring-port{fill:var(--muted);font-size:8px;text-anchor:middle}.token-orb{fill:var(--yellow);filter:drop-shadow(0 0 8px #f8c85d);opacity:0}.token-orb.show{opacity:1}.ring-center{text-anchor:middle;fill:var(--muted);font-size:11px;letter-spacing:2px}.ring-legend{position:absolute;bottom:13px;left:16px;display:flex;gap:15px;color:var(--muted);font-size:10px;flex-wrap:wrap;right:16px}.legend i{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:5px}.legend i.line{border-radius:2px;width:12px;height:2px;vertical-align:middle}.route-lines{font-size:11px;color:var(--muted);margin-top:10px;line-height:1.9}.route-lines b{color:var(--text);font-weight:600}.route-lines .configured{color:var(--cyan)}.route-lines .active-route{color:var(--orange)}.node-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:10px}.node-card{background:#101a2a;border:1px solid var(--line);border-radius:12px;padding:13px;transition:transform .18s var(--ease),border-color .18s}.node-card:hover{transform:translateY(-2px);border-color:#456486}.node-card.offline{opacity:.58}.node-head{display:flex;justify-content:space-between;align-items:center}.node-name{font-weight:700}.pill{font-size:9px;padding:3px 7px;border-radius:20px;text-transform:uppercase;letter-spacing:.08em}.pill.online{background:#123d2d;color:var(--green)}.pill.offline{background:#3b1822;color:var(--red)}.node-stat{display:flex;justify-content:space-between;color:var(--muted);font-size:11px;margin-top:9px;gap:8px}.node-stat b{color:var(--text);font-weight:500;text-align:right;word-break:break-word}.node-stat b.warn{color:var(--red)}.token-line{margin-top:11px;min-height:25px;color:var(--yellow);font-size:11px}.token-line.moving{color:var(--purple)}.token-line.stalled{color:var(--red)}.bar{height:3px;background:#26344a;border-radius:3px;overflow:hidden;margin-top:10px}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--cyan),var(--purple));width:50%;animation:flow 1.1s linear infinite}@keyframes flow{to{transform:translateX(100%)}}.side-stack{display:grid;gap:14px}.chat{height:262px;overflow:auto;display:flex;flex-direction:column-reverse;gap:8px}.msg{border-left:2px solid var(--cyan);padding:6px 9px;background:#0c1421;border-radius:0 8px 8px 0}.msg .meta{color:var(--muted);font-size:10px}.msg p{margin:2px 0 0;word-break:break-word}.empty{color:var(--muted);padding:26px;text-align:center}.compose{display:flex;gap:8px;margin-top:11px}.compose input{flex:1}.score-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}.activity{height:190px;overflow:auto;font-size:11px}.activity div{padding:7px 0;border-bottom:1px solid #1c2739;color:var(--muted)}.activity b{color:var(--cyan);font-weight:500}.loading{position:fixed;inset:0;background:#070b14;z-index:20;display:grid;place-items:center;transition:opacity .4s}.loading.hide{opacity:0;pointer-events:none}.loader{text-align:center}.spinner{width:45px;height:45px;border:2px solid #22314b;border-top-color:var(--cyan);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 16px}@keyframes spin{to{transform:rotate(360deg)}}.toast{position:fixed;right:22px;bottom:22px;background:#14223a;border:1px solid #456486;border-radius:10px;padding:12px 15px;opacity:0;transform:translateY(10px);transition:.22s;z-index:30}.toast.show{opacity:1;transform:none}.skeleton{height:13px;border-radius:5px;background:linear-gradient(90deg,#172238,#223452,#172238);background-size:200% 100%;animation:shimmer 1.4s infinite}@keyframes shimmer{to{background-position:-200% 0}}
+/* Node editor (#10) */
+.peer-row{display:grid;grid-template-columns:28px 1fr 64px auto auto;gap:6px;align-items:center;margin-bottom:6px}
+.peer-row .field{padding:7px 8px;font-size:12px}
+.peer-id{color:var(--muted);font-size:11px;font-weight:700}
+.peer-enabled{display:flex;align-items:center;gap:4px;font-size:10px;color:var(--muted);white-space:nowrap}
+.peer-remove{padding:6px 10px;font-size:13px;line-height:1;color:var(--red);border-color:#472531}
+.quickgen{display:grid;grid-template-columns:1.4fr .8fr .6fr;gap:6px;margin-top:6px}
+.quickgen .field{padding:7px 8px;font-size:12px}
+/* Diagnostics table (#12) */
+.diag-table{width:100%;border-collapse:collapse;font-size:11px}
+.diag-table th{text-align:left;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.06em;font-size:9px;padding:6px 8px;border-bottom:1px solid var(--line)}
+.diag-table td{padding:7px 8px;border-bottom:1px solid #1c2739;color:var(--text)}
+.diag-table td.dim{color:var(--muted)}
+.diag-table td.warn{color:var(--red)}
+.diag-wrap{overflow-x:auto}
+@media(max-width:1050px){.app{grid-template-columns:260px 1fr}.dashboard{grid-template-columns:1fr}.ring-wrap{min-height:350px}.metrics{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:700px){.app{display:block}.side{position:relative;height:auto;border-right:0;border-bottom:1px solid var(--line)}.main{padding:20px 13px}.top{display:block}.live{margin-top:13px}.metrics{gap:8px}.metric{padding:12px}.metric .v{font-size:21px}.ring{height:340px}.ring-wrap{min-height:340px}.score-row{grid-template-columns:1fr}.peer-row{grid-template-columns:24px 1fr 56px auto auto}}
 </style>
 </head>
 <body>
@@ -14,48 +31,413 @@
 <div class="app">
 <aside class="side">
   <div class="brand"><div class="brandmark">◆</div><div><h1>NODE NEXUS</h1><small>COMMAND CENTER / HTML</small></div></div>
-  <div class="label">Connection profile</div>
-  <input id="host" class="field" value="localhost" aria-label="Node host">
-  <div class="hint">Use a LAN IP for a remote PC, such as 192.168.1.20.</div>
-  <div class="label">Ports</div>
-  <div class="row"><input id="startPort" class="field" value="8000" inputmode="numeric"><input id="count" class="field" value="10" inputmode="numeric"></div>
-  <div class="hint">Start port and number of nodes.</div>
-  <button class="btn primary full" id="apply">Apply and reconnect</button>
+
+  <div class="label">Node editor</div>
+  <div id="peerEditor"></div>
+  <button class="btn full" id="addPeer" type="button">+ Add node</button>
+  <div class="hint">Each node gets its own host:port — set a LAN IP (e.g. 192.168.1.20) for a node running on another PC. Uncheck "on" to stop polling a node without removing it.</div>
+
+  <div class="label">Quick-generate (overwrites list above)</div>
+  <div class="quickgen">
+    <input id="qHost" class="field" value="localhost" aria-label="Quick-generate host">
+    <input id="qStart" class="field" value="8000" inputmode="numeric" aria-label="Quick-generate start port">
+    <input id="qCount" class="field" value="10" inputmode="numeric" aria-label="Quick-generate node count">
+  </div>
+  <button class="btn full" id="quickGenerate" type="button" style="margin-top:6px">Generate sequential rows</button>
+
+  <button class="btn primary full" id="apply" type="button" style="margin-top:12px">Apply and reconnect</button>
+
   <div class="label">Command target</div>
   <select id="target" class="field"></select>
   <div class="label">Broadcast chat</div>
-  <div class="compose"><input id="chatInput" class="field" placeholder="Type a message…"><button class="btn green" id="send">Send</button></div>
+  <div class="compose"><input id="chatInput" class="field" placeholder="Type a message…"><button class="btn green" id="send" type="button">Send</button></div>
   <div class="label">Scoreboard token action</div>
-  <div class="score-row"><input id="delta" class="field" value="1" inputmode="numeric"><button class="btn" id="score">Request token</button></div>
-  <button class="btn full" style="margin-top:8px" id="elect">Force election</button>
-  <div class="side-footer">Direct browser control uses the existing <b>/api/status</b>, <b>/api/send</b>, <b>/api/action/score</b>, and <b>/api/action/elect</b> endpoints. CORS is already enabled in the node server.</div>
+  <div class="score-row"><input id="delta" class="field" value="1" inputmode="numeric"><button class="btn" id="score" type="button">Request token</button></div>
+  <button class="btn full" style="margin-top:8px" id="elect" type="button">Force election</button>
+  <div class="side-footer">Direct browser control uses each node's own <b>/api/status</b>, <b>/api/send</b>, <b>/api/action/score</b>, and <b>/api/action/elect</b> endpoints. CORS is already enabled in the node server. Your node list is saved in this browser only.</div>
 </aside>
 <main class="main">
-  <header class="top"><div><div class="eyebrow">Distributed systems observability</div><div class="title">Live command center</div><p class="subtitle">Watch the ring, inspect every node, and follow the token as it moves.</p></div><div class="live"><i class="dot" id="liveDot"></i><span id="liveText">CONNECTING</span><span class="panel-sub" id="updated">—</span></div></header>
+  <header class="top"><div><div class="eyebrow">Distributed systems observability</div><div class="title">Live command center</div><p class="subtitle">Watch the ring, inspect every node, and follow the token as it moves — across one machine or several.</p></div><div class="live"><i class="dot" id="liveDot"></i><span id="liveText">CONNECTING</span><span class="panel-sub" id="updated">—</span></div></header>
   <section class="metrics"><div class="metric"><div class="k">Nodes online</div><div class="v" id="mOnline">—</div><div class="s" id="mOnlineSub">waiting for telemetry</div></div><div class="metric"><div class="k">Current leader</div><div class="v" id="mLeader">—</div><div class="s">bully election view</div></div><div class="metric"><div class="k">Token holder</div><div class="v" id="mToken">—</div><div class="s" id="mTokenSub">following route</div></div><div class="metric"><div class="k">Total token passes</div><div class="v" id="mPasses">—</div><div class="s">reported by live nodes</div></div></section>
   <div class="dashboard">
-    <section class="panel"><div class="panel-head"><div><div class="panel-title">Token topology</div><div class="panel-sub">Clockwise ring · animated next-hop telemetry</div></div><div class="pill online" id="routeStatus">SCANNING</div></div><div class="ring-wrap"><svg class="ring" id="ring" viewBox="0 0 700 420" role="img" aria-label="Token ring visualization"></svg><div class="ring-legend"><span><i style="background:var(--green)"></i>online</span><span><i style="background:var(--yellow)"></i>token</span><span><i style="background:var(--purple)"></i>in flight</span><span><i style="background:var(--red)"></i>offline</span></div></div></section>
-    <div class="side-stack"><section class="panel"><div class="panel-head"><div><div class="panel-title">Live chat stream</div><div class="panel-sub">Merged from node status responses</div></div></div><div class="chat" id="chat"><div class="empty">No messages yet.</div></div></section><section class="panel"><div class="panel-head"><div><div class="panel-title">Activity feed</div><div class="panel-sub">Health, elections, and token movement</div></div></div><div class="activity" id="activity"><div>Waiting for first poll…</div></div></section></div>
+    <section class="panel"><div class="panel-head"><div><div class="panel-title">Token topology</div><div class="panel-sub">Configured ring (cyan dashed) vs active failover route (orange)</div></div><div class="pill online" id="routeStatus">SCANNING</div></div><div class="ring-wrap"><svg class="ring" id="ring" viewBox="0 0 700 420" role="img" aria-label="Token ring visualization"></svg><div class="ring-legend"><span><i style="background:var(--green)"></i>online</span><span><i style="background:var(--yellow)"></i>token</span><span><i style="background:var(--purple)"></i>in flight</span><span><i style="background:var(--red)"></i>offline</span><span><i class="line" style="background:var(--orange)"></i>active route</span></div></div>
+      <div class="route-lines">
+        <div><b>Configured ring:</b> <span class="configured" id="configuredRoute">—</span></div>
+        <div><b>Active route (failover-adjusted):</b> <span class="active-route" id="activeRoute">—</span></div>
+      </div>
+    </section>
+    <div class="side-stack"><section class="panel"><div class="panel-head"><div><div class="panel-title">Live chat stream</div><div class="panel-sub">Merged from node status responses</div></div></div><div class="chat" id="chat"><div class="empty">No messages yet.</div></div></section><section class="panel"><div class="panel-head"><div><div class="panel-title">Activity feed</div><div class="panel-sub">Health, elections, token hops, and dead-peer changes</div></div></div><div class="activity" id="activity"><div>Waiting for first poll…</div></div></section></div>
   </div>
-  <section class="panel" style="margin-top:14px"><div class="panel-head"><div><div class="panel-title">Node matrix</div><div class="panel-sub">Every node, every hop, one glance</div></div><div class="panel-sub" id="endpointLabel">http://localhost:8000–8009</div></div><div class="node-grid" id="nodes"><div class="node-card"><div class="skeleton"></div><br><div class="skeleton" style="width:70%"></div></div></div></section>
+  <section class="panel" style="margin-top:14px"><div class="panel-head"><div><div class="panel-title">Node matrix</div><div class="panel-sub">Every node, every hop, one glance</div></div><div class="panel-sub" id="endpointLabel">—</div></div><div class="node-grid" id="nodes"><div class="node-card"><div class="skeleton"></div><br><div class="skeleton" style="width:70%"></div></div></div></section>
+  <section class="panel" style="margin-top:14px"><div class="panel-head"><div><div class="panel-title">History &amp; diagnostics</div><div class="panel-sub">Election epoch, health checks, hop/send counters, and per-node latency</div></div></div><div class="diag-wrap"><table class="diag-table"><thead><tr><th>Node</th><th>Epoch</th><th>Last health check</th><th>Send ok/fail</th><th>Token hops ok/fail</th><th>Dead peers</th><th>Latency</th></tr></thead><tbody id="diagTable"></tbody></table></div></section>
 </main></div><div class="toast" id="toast"></div>
 <script>
-const state={host:'localhost',start:8000,count:10,nodes:[],previous:new Map(),events:[],first:true};
-const $=id=>document.getElementById(id);
-const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-function endpoint(i,path=''){return `http://${state.host}:${state.start+i}${path}`}
-function logEvent(text){state.events.unshift({time:new Date(),text});state.events=state.events.slice(0,24);$('activity').innerHTML=state.events.map(e=>`<div><b>${e.time.toLocaleTimeString()}</b> ${esc(e.text)}</div>`).join('')}
-function toast(text){$('toast').textContent=text;$('toast').classList.add('show');setTimeout(()=>$('toast').classList.remove('show'),2600)}
-function nodesFromInputs(){state.host=$('host').value.trim()||'localhost';state.start=Number($('startPort').value)||8000;state.count=Math.max(1,Math.min(64,Number($('count').value)||10));$('endpointLabel').textContent=`http://${state.host}:${state.start}–${state.start+state.count-1}`;$('target').innerHTML=Array.from({length:state.count},(_,i)=>`<option value="${i}">node ${i} · ${state.start+i}</option>`)}
-async function getNode(i){const ctl=new AbortController();const t=setTimeout(()=>ctl.abort(),1500);try{const r=await fetch(endpoint(i,'/api/status'),{signal:ctl.signal,cache:'no-store'});if(!r.ok)throw Error('HTTP '+r.status);return {...await r.json(),online:true,node_id:i,port:state.start+i}}catch(e){return {node_id:i,port:state.start+i,online:false,error:e.message}}finally{clearTimeout(t)}}
-async function poll(){const before=state.nodes;const nodes=await Promise.all(Array.from({length:state.count},(_,i)=>getNode(i)));state.nodes=nodes;compare(before,nodes);render();$('loading').classList.add('hide');$('updated').textContent=new Date().toLocaleTimeString();setTimeout(poll,1000)}
-function compare(before,now){const bm=new Map(before.map(n=>[n.node_id,n]));now.forEach(n=>{const p=bm.get(n.node_id);if(!p&&n.online)logEvent(`node ${n.node_id} came online`);if(p&&p.online&&!n.online)logEvent(`node ${n.node_id} went offline`);if(n.online&&p&&p.token_state!==n.token_state&&n.token_state)logEvent(`node ${n.node_id}: token ${n.token_state.toLowerCase()}`)})}
-function render(){const live=state.nodes.filter(n=>n.online),leaders=live.filter(n=>n.is_leader),holders=live.filter(n=>n.has_token);$('mOnline').textContent=`${live.length}/${state.count}`;$('mOnlineSub').textContent=live.length===state.count?'all systems nominal':`${state.count-live.length} node(s) unreachable`;$('mLeader').textContent=leaders.length?`node ${leaders[0].node_id}`:(live[0]?.leader_id>=0?`node ${live[0].leader_id}`:'—');$('mToken').textContent=holders.length?`node ${holders[0].node_id}`:'moving';$('mTokenSub').textContent=holders.length?holders[0].token_state:'inspect ring animation';$('mPasses').textContent=live.length?Math.max(...live.map(n=>n.token_passes||0)):'—';$('liveText').textContent=live.length?'SYSTEM LIVE':'NO CONNECTION';$('liveDot').classList.toggle('off',!live.length);$('routeStatus').textContent=live.length?'LIVE ROUTE':'OFFLINE';renderNodes();renderChat();renderRing()}
-function renderNodes(){$('nodes').innerHTML=state.nodes.map(n=>{const cls=n.online?'':'offline',token=n.token_state||'NO TELEMETRY',moving=token.startsWith('IN_FLIGHT'),stalled=token.startsWith('STALLED');return `<article class="node-card ${cls}"><div class="node-head"><span class="node-name">NODE ${n.node_id}</span><span class="pill ${n.online?'online':'offline'}">${n.online?'online':'offline'}</span></div><div class="node-stat"><span>port</span><b>${n.port}</b></div><div class="node-stat"><span>leader</span><b>${n.leader_id>=0?'node '+n.leader_id:'—'}</b></div><div class="node-stat"><span>lamport</span><b>${n.lamport??'—'}</b></div><div class="token-line ${moving?'moving':''} ${stalled?'stalled':''}">${n.online?'◆ '+esc(token):'○ awaiting health'}</div>${moving?'<div class="bar"><i></i></div>':''}<div class="node-stat"><span>next hop</span><b>${n.token_next_peer||'—'}</b></div></article>`}).join('')}
-function renderChat(){const all=[];state.nodes.forEach(n=>(n.messages||[]).forEach(m=>all.push({...m,node:n.node_id})));const seen=new Map();all.forEach(m=>seen.set(`${m.sender_id}:${m.lamport}:${m.text}`,m));const msgs=[...seen.values()].sort((a,b)=>a.lamport-b.lamport).slice(-14).reverse();$('chat').innerHTML=msgs.length?msgs.map(m=>`<div class="msg"><div class="meta">L${m.lamport} · node ${m.sender_id}</div><p>${esc(m.text)}</p></div>`).join(''):'<div class="empty">No messages yet.</div>'}
-function renderRing(){const svg=$('ring'),w=700,h=420,cx=350,cy=210,r=Math.min(170,190*Math.min(1,state.count/10));let html='';const pts=[];for(let i=0;i<state.count;i++){const a=-Math.PI/2+(i/state.count)*Math.PI*2;pts.push({x:cx+Math.cos(a)*r,y:cy+Math.sin(a)*r})}for(let i=0;i<state.count;i++){const n=state.nodes[i]||{},p=pts[i],q=pts[(i+1)%state.count],active=n.online&&((n.token_state||'').startsWith('IN_FLIGHT'));html+=`<line class="ring-edge ${active?'active':''}" x1="${p.x}" y1="${p.y}" x2="${q.x}" y2="${q.y}"/>`;if(active)html+=`<circle class="token-orb show" cx="${(p.x+q.x)/2}" cy="${(p.y+q.y)/2}" r="6"><animate attributeName="cx" values="${p.x};${q.x}" dur=".8s" repeatCount="indefinite"/><animate attributeName="cy" values="${p.y};${q.y}" dur=".8s" repeatCount="indefinite"/></circle>`}html+=`<text class="ring-center" x="${cx}" y="${cy-7}">TOKEN TELEMETRY</text><text class="ring-center" x="${cx}" y="${cy+13}">${state.nodes.filter(n=>n.online).length}/${state.count} ONLINE</text>`;pts.forEach((p,i)=>{const n=state.nodes[i]||{},cls=!n.online?'offline':n.has_token?'token':'online';html+=`<circle class="ring-node ${cls}" cx="${p.x}" cy="${p.y}" r="22"/><text class="ring-label" x="${p.x}" y="${p.y+4}">N${i}</text><text class="ring-port" x="${p.x}" y="${p.y+36}">${state.start+i}</text>`});svg.innerHTML=html}
-async function command(path,payload){const i=Number($('target').value);try{const r=await fetch(endpoint(i,path),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});if(!r.ok)throw Error('HTTP '+r.status);toast('Command accepted by node '+i);logEvent(`command sent to node ${i}: ${path}`);setTimeout(poll,100)}catch(e){toast('Command failed: '+e.message);logEvent(`command failed on node ${i}: ${e.message}`)}}
-$('apply').onclick=()=>{nodesFromInputs();state.nodes=[];state.events=[];logEvent('connection profile changed');poll()};$('send').onclick=()=>{const text=$('chatInput').value.trim();if(text){command('/api/send',{text});$('chatInput').value=''}};$('chatInput').onkeydown=e=>{if(e.key==='Enter')$('send').click()};$('score').onclick=()=>command('/api/action/score',{delta:Number($('delta').value)||0});$('elect').onclick=()=>command('/api/action/elect',{});nodesFromInputs();poll();
+const PEERS_KEY = 'nodenexus_peers_v1';
+
+function defaultPeers(host, startPort, count) {
+  const peers = [];
+  for (let i = 0; i < count; i++) peers.push({ id: i, host, port: startPort + i, enabled: true });
+  return peers;
+}
+
+function loadPeers() {
+  try {
+    const raw = localStorage.getItem(PEERS_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed) && parsed.length) return parsed;
+    }
+  } catch (e) { /* ignore, fall through to defaults */ }
+  return [
+    { id: 0, host: '172.16.49.41', port: 8000, enabled: true },
+    { id: 1, host: '172.21.54.149', port: 8000, enabled: true }
+  ];
+}
+
+function savePeers() {
+  try { localStorage.setItem(PEERS_KEY, JSON.stringify(state.peers)); } catch (e) { /* storage unavailable, non-fatal */ }
+}
+
+const state = { peers: loadPeers(), nodes: [], events: [], latencies: {}, first: true };
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const fmtMs = ms => ms == null ? '—' : (ms < 1000 ? ms + 'ms' : (ms / 1000).toFixed(1) + 's');
+function fmtUptime(ms) {
+  if (ms == null) return '—';
+  const s = Math.floor(ms / 1000);
+  const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), sec = s % 60;
+  return (h > 0 ? h + 'h ' : '') + (h > 0 || m > 0 ? m + 'm ' : '') + sec + 's';
+}
+function routeToText(ids) {
+  if (!ids.length) return '—';
+  return ids.map(id => id === '?' ? '?' : 'node' + id).join(' \u2192 ');
+}
+
+// ---- Peer / node editor (#10) --------------------------------------
+function renderPeerEditor() {
+  const rows = state.peers.map((p, idx) => `
+    <div class="peer-row" data-idx="${idx}">
+      <span class="peer-id">N${p.id}</span>
+      <input class="field peer-host" value="${esc(p.host)}" data-field="host" data-idx="${idx}" aria-label="Host for node ${p.id}">
+      <input class="field peer-port" value="${p.port}" inputmode="numeric" data-field="port" data-idx="${idx}" aria-label="Port for node ${p.id}">
+      <label class="peer-enabled"><input type="checkbox" ${p.enabled ? 'checked' : ''} data-field="enabled" data-idx="${idx}"> on</label>
+      <button class="btn peer-remove" data-idx="${idx}" title="Remove node ${p.id}" type="button">\u00d7</button>
+    </div>`).join('');
+  $('peerEditor').innerHTML = rows || '<div class="hint">No nodes configured. Add one below.</div>';
+}
+
+function reindexPeers() {
+  state.peers.forEach((p, i) => { p.id = i; });
+}
+
+function addPeerRow() {
+  const last = state.peers[state.peers.length - 1];
+  const host = last ? last.host : 'localhost';
+  const port = last ? Number(last.port) + 1 : 8000;
+  state.peers.push({ id: state.peers.length, host, port, enabled: true });
+  renderPeerEditor();
+}
+
+function removePeerRow(idx) {
+  state.peers.splice(idx, 1);
+  reindexPeers();
+  renderPeerEditor();
+}
+
+function wirePeerEditor() {
+  $('peerEditor').addEventListener('input', e => {
+    const idx = Number(e.target.dataset.idx);
+    const field = e.target.dataset.field;
+    if (Number.isNaN(idx) || !field) return;
+    const peer = state.peers[idx];
+    if (!peer) return;
+    if (field === 'host') peer.host = e.target.value.trim() || 'localhost';
+    else if (field === 'port') peer.port = Number(e.target.value) || peer.port;
+  });
+  $('peerEditor').addEventListener('change', e => {
+    const idx = Number(e.target.dataset.idx);
+    const field = e.target.dataset.field;
+    if (Number.isNaN(idx) || !field) return;
+    const peer = state.peers[idx];
+    if (!peer) return;
+    if (field === 'enabled') peer.enabled = e.target.checked;
+  });
+  $('peerEditor').addEventListener('click', e => {
+    if (e.target.classList.contains('peer-remove')) {
+      removePeerRow(Number(e.target.dataset.idx));
+    }
+  });
+  $('addPeer').onclick = () => addPeerRow();
+  $('quickGenerate').onclick = () => {
+    const host = $('qHost').value.trim() || 'localhost';
+    const startPort = Number($('qStart').value) || 8000;
+    const count = Math.max(1, Math.min(64, Number($('qCount').value) || 10));
+    state.peers = defaultPeers(host, startPort, count);
+    renderPeerEditor();
+    toast('Generated ' + count + ' node row(s) \u2014 click Apply to use them');
+  };
+  $('apply').onclick = () => {
+    savePeers();
+    state.nodes = [];
+    state.events = [];
+    state.latencies = {};
+    refreshTargetOptions();
+    logEvent('connection profile changed \u2014 ' + state.peers.length + ' node(s) configured');
+    poll();
+  };
+}
+
+function refreshTargetOptions() {
+  $('target').innerHTML = state.peers.map(p => `<option value="${p.id}">node ${p.id} \u00b7 ${esc(p.host)}:${p.port}</option>`).join('');
+  $('endpointLabel').textContent = state.peers.length
+    ? `${state.peers.length} node(s) \u00b7 ${esc(state.peers[0].host)}:${state.peers[0].port}\u2026`
+    : 'no nodes configured';
+}
+
+// ---- Activity / toast -------------------------------------------------
+function logEvent(text) {
+  state.events.unshift({ time: new Date(), text });
+  state.events = state.events.slice(0, 30);
+  renderActivity();
+}
+function renderActivity() {
+  $('activity').innerHTML = state.events.length
+    ? state.events.map(e => `<div><b>${e.time.toLocaleTimeString()}</b> ${esc(e.text)}</div>`).join('')
+    : '<div>Waiting for first poll\u2026</div>';
+}
+function toast(text) {
+  $('toast').textContent = text;
+  $('toast').classList.add('show');
+  setTimeout(() => $('toast').classList.remove('show'), 2600);
+}
+
+// ---- Polling (#2, #12) -------------------------------------------------
+async function getNode(peer) {
+  if (!peer.enabled) return { node_id: peer.id, host: peer.host, port: peer.port, online: false, disabled: true };
+  const ctl = new AbortController();
+  const t = setTimeout(() => ctl.abort(), 1500);
+  const started = performance.now();
+  try {
+    const r = await fetch(`http://${peer.host}:${peer.port}/api/status`, { signal: ctl.signal, cache: 'no-store' });
+    const latency = Math.round(performance.now() - started);
+    state.latencies[peer.id] = latency;
+    if (!r.ok) throw Error('HTTP ' + r.status);
+    const data = await r.json();
+    return { ...data, online: true, node_id: peer.id, host: peer.host, port: peer.port, latency_ms: latency };
+  } catch (e) {
+    return { node_id: peer.id, host: peer.host, port: peer.port, online: false, error: e.message };
+  } finally {
+    clearTimeout(t);
+  }
+}
+
+async function poll() {
+  const before = state.nodes;
+  const nodes = await Promise.all(state.peers.map(p => getNode(p)));
+  state.nodes = nodes;
+  compare(before, nodes);
+  render();
+  $('loading').classList.add('hide');
+  $('updated').textContent = new Date().toLocaleTimeString();
+  setTimeout(poll, 1000);
+}
+
+function compare(before, now) {
+  const bm = new Map(before.map(n => [n.node_id, n]));
+  now.forEach(n => {
+    const p = bm.get(n.node_id);
+    if (!p && n.online) logEvent(`node ${n.node_id} came online`);
+    if (p && p.online && !n.online) logEvent(`node ${n.node_id} went offline`);
+    if (n.online && p && p.token_state !== n.token_state && n.token_state) logEvent(`node ${n.node_id}: token ${n.token_state.toLowerCase()}`);
+    if (n.online && p && p.election_epoch !== undefined && p.election_epoch !== n.election_epoch) logEvent(`node ${n.node_id}: new election epoch ${n.election_epoch} (leader node ${n.leader_id})`);
+    if (n.online && p && (p.token_hops_failed || 0) < (n.token_hops_failed || 0)) logEvent(`node ${n.node_id}: a token hop failed (total ${n.token_hops_failed})`);
+    if (n.online && p && (p.dead_peers || []).length !== (n.dead_peers || []).length) logEvent(`node ${n.node_id}: dead-peer set changed \u2192 [${(n.dead_peers || []).join(', ')}]`);
+  });
+}
+
+// ---- Active route (#11) -------------------------------------------------
+function computeActiveRoute() {
+  const byAddress = new Map();
+  state.nodes.forEach(n => { if (n.online) byAddress.set(`${n.host}:${n.port}`, n); });
+  const online = state.nodes.filter(n => n.online);
+  if (!online.length) return [];
+  const start = online.find(n => n.has_token) || online[0];
+  const route = [start.node_id];
+  const seen = new Set([start.node_id]);
+  let current = start;
+  for (let hops = 0; hops < state.peers.length; hops++) {
+    const nextAddr = current.token_next_peer;
+    if (!nextAddr || nextAddr === '-') break;
+    const next = byAddress.get(nextAddr);
+    if (!next) { route.push('?'); break; }
+    route.push(next.node_id);
+    if (seen.has(next.node_id)) break;
+    seen.add(next.node_id);
+    current = next;
+  }
+  return route;
+}
+
+function renderRoutes() {
+  const n = state.peers.length;
+  const configured = Array.from({ length: n }, (_, i) => i);
+  if (n) configured.push(configured[0]);
+  $('configuredRoute').textContent = routeToText(configured);
+  const active = computeActiveRoute();
+  $('activeRoute').textContent = active.length
+    ? routeToText(active)
+    : (state.nodes.some(x => x.online) ? 'computing\u2026' : 'no nodes online');
+}
+
+// ---- Rendering -----------------------------------------------------------
+function render() {
+  const live = state.nodes.filter(n => n.online);
+  const leaders = live.filter(n => n.is_leader);
+  const holders = live.filter(n => n.has_token);
+  const n = state.peers.length;
+  $('mOnline').textContent = `${live.length}/${n}`;
+  $('mOnlineSub').textContent = live.length === n ? 'all systems nominal' : `${n - live.length} node(s) unreachable/disabled`;
+  $('mLeader').textContent = leaders.length ? `node ${leaders[0].node_id}` : (live[0] && live[0].leader_id >= 0 ? `node ${live[0].leader_id}` : '\u2014');
+  $('mToken').textContent = holders.length ? `node ${holders[0].node_id}` : 'moving';
+  $('mTokenSub').textContent = holders.length ? holders[0].token_state : 'inspect ring animation';
+  $('mPasses').textContent = live.length ? Math.max(...live.map(x => x.token_passes || 0)) : '\u2014';
+  $('liveText').textContent = live.length ? 'SYSTEM LIVE' : 'NO CONNECTION';
+  $('liveDot').classList.toggle('off', !live.length);
+  $('routeStatus').textContent = live.length ? 'LIVE ROUTE' : 'OFFLINE';
+  renderNodes();
+  renderChat();
+  renderRing();
+  renderRoutes();
+  renderDiagnostics();
+}
+
+function renderNodes() {
+  $('nodes').innerHTML = state.nodes.map(n => {
+    if (n.disabled) {
+      return `<article class="node-card offline"><div class="node-head"><span class="node-name">NODE ${n.node_id}</span><span class="pill offline">disabled</span></div><div class="node-stat"><span>address</span><b>${esc(n.host)}:${n.port}</b></div></article>`;
+    }
+    const cls = n.online ? '' : 'offline';
+    const token = n.token_state || 'NO TELEMETRY';
+    const moving = token.startsWith('IN_FLIGHT');
+    const stalled = token.startsWith('STALLED');
+    const deadCount = (n.dead_peers || []).length;
+    return `<article class="node-card ${cls}">
+      <div class="node-head"><span class="node-name">NODE ${n.node_id}</span><span class="pill ${n.online ? 'online' : 'offline'}">${n.online ? 'online' : 'offline'}</span></div>
+      <div class="node-stat"><span>address</span><b>${esc(n.host)}:${n.port}</b></div>
+      <div class="node-stat"><span>leader</span><b>${n.leader_id >= 0 ? 'node ' + n.leader_id : '\u2014'}</b></div>
+      <div class="node-stat"><span>lamport</span><b>${n.lamport ?? '\u2014'}</b></div>
+      <div class="node-stat"><span>latency</span><b>${fmtMs(n.latency_ms)}</b></div>
+      <div class="node-stat"><span>uptime</span><b>${fmtUptime(n.uptime_ms)}</b></div>
+      <div class="node-stat"><span>hops ok/fail</span><b>${n.token_hops_ok ?? 0}/${n.token_hops_failed ?? 0}</b></div>
+      <div class="node-stat"><span>dead peers</span><b class="${deadCount ? 'warn' : ''}">${deadCount ? (n.dead_peers || []).join(',') : 'none'}</b></div>
+      <div class="token-line ${moving ? 'moving' : ''} ${stalled ? 'stalled' : ''}">${n.online ? '\u25c6 ' + esc(token) : '\u25cb awaiting health'}</div>
+      ${moving ? '<div class="bar"><i></i></div>' : ''}
+      <div class="node-stat"><span>next hop (active)</span><b>${esc(n.token_next_peer || '\u2014')}</b></div>
+      <div class="node-stat"><span>next hop (configured)</span><b>${esc(n.token_next_peer_configured || '\u2014')}</b></div>
+    </article>`;
+  }).join('');
+}
+
+function renderChat() {
+  const all = [];
+  state.nodes.forEach(n => (n.messages || []).forEach(m => all.push({ ...m, node: n.node_id })));
+  const seen = new Map();
+  all.forEach(m => seen.set(`${m.sender_id}:${m.lamport}:${m.text}`, m));
+  const msgs = [...seen.values()].sort((a, b) => a.lamport - b.lamport).slice(-14).reverse();
+  $('chat').innerHTML = msgs.length
+    ? msgs.map(m => `<div class="msg"><div class="meta">L${m.lamport} \u00b7 node ${m.sender_id}</div><p>${esc(m.text)}</p></div>`).join('')
+    : '<div class="empty">No messages yet.</div>';
+}
+
+function renderRing() {
+  const svg = $('ring');
+  const cx = 350, cy = 210;
+  const n = state.peers.length;
+  if (!n) { svg.innerHTML = ''; return; }
+  const r = Math.min(170, 190 * Math.min(1, n / 10));
+  let html = '';
+  const pts = [];
+  for (let i = 0; i < n; i++) {
+    const a = -Math.PI / 2 + (i / n) * Math.PI * 2;
+    pts.push({ x: cx + Math.cos(a) * r, y: cy + Math.sin(a) * r });
+  }
+  for (let i = 0; i < n; i++) {
+    const nd = state.nodes[i] || {};
+    const p = pts[i], q = pts[(i + 1) % n];
+    const active = nd.online && (nd.token_state || '').startsWith('IN_FLIGHT');
+    html += `<line class="ring-edge ${active ? 'active' : ''}" x1="${p.x}" y1="${p.y}" x2="${q.x}" y2="${q.y}"/>`;
+    if (active) {
+      html += `<circle class="token-orb show" cx="${(p.x + q.x) / 2}" cy="${(p.y + q.y) / 2}" r="6"><animate attributeName="cx" values="${p.x};${q.x}" dur=".8s" repeatCount="indefinite"/><animate attributeName="cy" values="${p.y};${q.y}" dur=".8s" repeatCount="indefinite"/></circle>`;
+    }
+  }
+  const route = computeActiveRoute().filter(id => id !== '?');
+  if (route.length > 1) {
+    const pointsAttr = route.map(id => pts[id]).filter(Boolean).map(p => `${p.x},${p.y}`).join(' ');
+    html += `<polyline class="active-route-line" points="${pointsAttr}" fill="none"/>`;
+  }
+  html += `<text class="ring-center" x="${cx}" y="${cy - 7}">TOKEN TELEMETRY</text><text class="ring-center" x="${cx}" y="${cy + 13}">${state.nodes.filter(x => x.online).length}/${n} ONLINE</text>`;
+  pts.forEach((p, i) => {
+    const nd = state.nodes[i] || {};
+    const cls = nd.disabled ? 'disabled' : !nd.online ? 'offline' : nd.has_token ? 'token' : 'online';
+    const port = (state.peers[i] || {}).port || '';
+    html += `<circle class="ring-node ${cls}" cx="${p.x}" cy="${p.y}" r="22"/><text class="ring-label" x="${p.x}" y="${p.y + 4}">N${i}</text><text class="ring-port" x="${p.x}" y="${p.y + 36}">${esc(String(port))}</text>`;
+  });
+  svg.innerHTML = html;
+}
+
+function renderDiagnostics() {
+  const rows = state.nodes.map(n => {
+    if (!n.online) {
+      return `<tr><td>N${n.node_id}</td><td colspan="6" class="dim">${n.disabled ? 'disabled' : 'offline'}</td></tr>`;
+    }
+    const hc = n.last_health_check_ms ? Math.round((Date.now() - n.last_health_check_ms) / 1000) + 's ago' : 'never';
+    return `<tr>
+      <td>N${n.node_id}</td>
+      <td>${n.election_epoch ?? '\u2014'}</td>
+      <td class="${n.last_health_check_ok === false ? 'warn' : ''}">${n.last_health_check_ok === false ? 'FAILED' : 'OK'} (${hc})</td>
+      <td>${n.send_ok ?? 0}/${n.send_failed ?? 0}</td>
+      <td>${n.token_hops_ok ?? 0}/${n.token_hops_failed ?? 0}</td>
+      <td>${(n.dead_peers || []).join(', ') || '\u2014'}</td>
+      <td>${fmtMs(n.latency_ms)}</td>
+    </tr>`;
+  }).join('');
+  $('diagTable').innerHTML = rows || '<tr><td colspan="7" class="dim">no data yet</td></tr>';
+}
+
+// ---- Commands --------------------------------------------------------
+async function command(path, payload) {
+  const id = Number($('target').value);
+  const peer = state.peers.find(p => p.id === id);
+  if (!peer) { toast('No such node'); return; }
+  try {
+    const r = await fetch(`http://${peer.host}:${peer.port}${path}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    if (!r.ok) throw Error('HTTP ' + r.status);
+    toast('Command accepted by node ' + id);
+    logEvent(`command sent to node ${id}: ${path}`);
+    setTimeout(poll, 100);
+  } catch (e) {
+    toast('Command failed: ' + e.message);
+    logEvent(`command failed on node ${id}: ${e.message}`);
+  }
+}
+
+// ---- Init --------------------------------------------------------------
+renderPeerEditor();
+wirePeerEditor();
+refreshTargetOptions();
+$('send').onclick = () => {
+  const text = $('chatInput').value.trim();
+  if (text) { command('/api/send', { text }); $('chatInput').value = ''; }
+};
+$('chatInput').onkeydown = e => { if (e.key === 'Enter') $('send').click(); };
+$('score').onclick = () => command('/api/action/score', { delta: Number($('delta').value) || 0 });
+$('elect').onclick = () => command('/api/action/elect', {});
+poll();
 </script>
 </body>
 </html>
